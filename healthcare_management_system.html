@@ -1,0 +1,329 @@
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:var(--font-sans)}
+.hdr{background:linear-gradient(90deg,#0077b6,#00b4d8);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-radius:12px 12px 0 0}
+.hdr h1{font-size:20px;font-weight:500}
+.cart-btn{background:#fff;color:#0077b6;border:none;padding:8px 16px;border-radius:6px;font-weight:500;cursor:pointer;font-size:14px}
+nav{background:#0066a1;padding:10px 16px;display:flex;gap:4px;flex-wrap:wrap;border-radius:0}
+nav button{background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:7px 13px;border-bottom:3px solid transparent;font-size:14px;border-radius:4px}
+nav button:hover{color:#ffeb3b}
+nav button.active{border-bottom-color:#fff}
+.main{padding:20px;background:var(--surface-1);min-height:500px;border-radius:0 0 12px 12px}
+.section{display:none}.section.active{display:block}
+h2{color:#0077b6;margin-bottom:20px;font-size:24px;font-weight:500;text-align:center}
+h3{color:#0096c7;margin-bottom:12px;font-size:17px;font-weight:500}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:28px}
+.card{background:var(--surface-2);padding:20px;border-radius:12px;border:0.5px solid var(--border);border-left:5px solid #0077b6;transition:transform 0.2s}
+.card:hover{transform:translateY(-3px)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;margin:2px}
+.badge-ok{background:#d4edda;color:#155724}
+.badge-no{background:#f8d7da;color:#721c24}
+.badge-warn{background:#fff3cd;color:#856404}
+.alert{padding:12px 16px;margin-bottom:16px;border-radius:8px;border-left:4px solid;font-size:14px}
+.alert-s{background:#d4edda;color:#155724;border-color:#28a745}
+.alert-e{background:#f8d7da;color:#721c24;border-color:#f5c6cb}
+.alert-w{background:#fff3cd;color:#856404;border-color:#ffc107}
+.form-box{background:var(--surface-2);padding:24px;border-radius:12px;border:0.5px solid var(--border)}
+.fg{margin-bottom:16px}
+label{display:block;margin-bottom:6px;font-weight:500;color:var(--text-primary);font-size:13px}
+input,select,textarea{width:100%;padding:10px;border:0.5px solid var(--border-strong);border-radius:6px;font-size:13px;font-family:inherit;background:var(--surface-2);color:var(--text-primary)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#0077b6}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+button.primary{background:#0077b6;color:#fff;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:500;font-size:14px}
+button.primary:hover{background:#005fa3}
+button.primary:disabled{background:#ccc;cursor:not-allowed}
+.btn-danger{background:#dc3545!important}
+.btn-danger:hover{background:#c82333!important}
+.btn-success{background:#28a745!important}
+.btn-success:hover{background:#218838!important}
+.btn-sm{padding:5px 11px!important;font-size:12px!important}
+table{width:100%;border-collapse:collapse;background:var(--surface-2);border-radius:8px;overflow:hidden;border:0.5px solid var(--border)}
+table th{background:#0077b6;color:#fff;padding:12px;text-align:left;font-weight:500;font-size:13px}
+table td{padding:10px 12px;border-bottom:0.5px solid var(--border);font-size:13px;color:var(--text-primary)}
+table tr:hover td{background:var(--surface-1)}
+.cart-box{background:var(--surface-2);padding:16px;margin-bottom:16px;border-radius:8px;border:2px solid #0077b6;display:none}
+.cart-box.open{display:block}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--surface-1);margin-bottom:10px;border-radius:6px;gap:8px}
+.qc{display:flex;gap:4px;align-items:center}
+.qc button{padding:4px 9px;font-size:12px}
+.hero{background:linear-gradient(135deg,#0077b6,#00b4d8);color:#fff;padding:40px 24px;border-radius:12px;text-align:center;margin-bottom:28px}
+.hero h2{color:#fff;font-size:32px;margin-bottom:12px}
+.hero p{font-size:16px;margin-bottom:18px;opacity:0.9}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.feat{background:var(--surface-2);padding:24px;border-radius:12px;text-align:center;border:0.5px solid var(--border)}
+.feat:hover{transform:translateY(-4px);transition:transform 0.2s}
+.feat .icon{font-size:32px;margin-bottom:10px}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:20px}
+.info-card{background:var(--surface-2);padding:16px;border-radius:8px;text-align:center;border:0.5px solid var(--border)}
+.toast{position:fixed;top:80px;right:16px;background:#333;color:#fff;padding:12px 20px;border-radius:6px;font-size:13px;z-index:9999;display:none;border-radius:8px}
+.chk-lbl{display:flex;align-items:center;gap:8px;font-size:13px}
+input[type=checkbox]{width:auto}
+.apt-hist-item{background:var(--surface-2);border-left:4px solid #28a745;padding:12px;border-radius:6px;margin-bottom:10px;font-size:13px;position:relative;border:0.5px solid var(--border)}
+@media(max-width:600px){.fr{grid-template-columns:1fr}}
+</style>
+
+<div id="toast" class="toast"></div>
+
+<div style="border-radius:12px;overflow:hidden;border:0.5px solid var(--border)">
+<div class="hdr">
+  <h1>🏥 Healthcare Platform</h1>
+  <button class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+</div>
+<nav>
+  <button class="nav-btn active" onclick="showSection('home',this)">🏠 Home</button>
+  <button class="nav-btn" onclick="showSection('hospitals',this)">🏢 Hospitals</button>
+  <button class="nav-btn" onclick="showSection('doctors',this)">👨‍⚕️ Doctors</button>
+  <button class="nav-btn" onclick="showSection('appt',this)">📅 Appointments</button>
+  <button class="nav-btn" onclick="showSection('pharmacy',this)">💊 Pharmacy</button>
+  <button class="nav-btn" onclick="showSection('contact',this)">📞 Contact</button>
+</nav>
+<div class="main">
+  <div id="cartBox" class="cart-box">
+    <h3>🛒 Shopping Cart</h3>
+    <div id="cartItems"><p style="color:var(--text-muted);font-size:13px">Your cart is empty</p></div>
+    <div style="font-weight:500;font-size:16px;color:#0077b6;margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">Total: ₹<span id="cartTotal">0</span></div>
+    <button class="primary btn-success" style="width:100%;margin-top:12px">💳 Proceed to Checkout</button>
+  </div>
+
+  <div id="home" class="section active">
+    <div class="hero">
+      <h2>Smart Healthcare Platform</h2>
+      <p>Find hospitals, doctors, book appointments and order medicines</p>
+      <button class="primary" style="background:#fff;color:#0077b6" onclick="showSection('hospitals',document.querySelectorAll('.nav-btn')[1])">Explore Services →</button>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="icon">🏥</div><h3>Find Hospitals</h3><p style="font-size:13px;color:var(--text-secondary)">Compare hospitals, view facilities and ratings</p></div>
+      <div class="feat"><div class="icon">👨‍⚕️</div><h3>Expert Doctors</h3><p style="font-size:13px;color:var(--text-secondary)">Browse verified doctors and specialists</p></div>
+      <div class="feat"><div class="icon">💊</div><h3>Online Pharmacy</h3><p style="font-size:13px;color:var(--text-secondary)">Order medicines with home delivery</p></div>
+    </div>
+  </div>
+
+  <div id="hospitals" class="section">
+    <h2>🏢 Hospital Facilities</h2>
+    <div class="card-grid" id="hospitalsGrid"></div>
+  </div>
+
+  <div id="doctors" class="section">
+    <h2>👨‍⚕️ Doctors & Medical Staff</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Role</th><th>Specialization</th><th>Experience</th><th>Availability</th></tr></thead>
+      <tbody id="doctorsBody"></tbody>
+    </table>
+  </div>
+
+  <div id="appt" class="section">
+    <h2>📅 Book an Appointment</h2>
+    <div id="apptSuccess"></div><div id="apptError"></div>
+    <div id="apptHist"></div>
+    <div class="form-box">
+      <h3>👤 Patient Information</h3>
+      <div class="fr">
+        <div class="fg"><label>Full Name *</label><input type="text" id="pName"></div>
+        <div class="fg"><label>Age *</label><input type="number" id="pAge" min="0" max="150"></div>
+        <div class="fg"><label>Gender *</label><select id="pGender"><option value="">-- Select --</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+        <div class="fg"><label>Blood Type *</label><select id="pBlood"><option value="">-- Select --</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+        <div class="fg"><label>Email *</label><input type="email" id="pEmail"></div>
+        <div class="fg"><label>Phone *</label><input type="tel" id="pPhone"></div>
+      </div>
+      <h3>🏥 Appointment Details</h3>
+      <div class="fr">
+        <div class="fg"><label>Hospital *</label><select id="aHosp"><option value="">-- Select --</option></select></div>
+        <div class="fg"><label>Doctor *</label><select id="aDoc"><option value="">-- Select --</option></select></div>
+        <div class="fg"><label>Date *</label><input type="date" id="aDate"></div>
+        <div class="fg"><label>Reason *</label><input type="text" id="aReason" placeholder="e.g., Regular Checkup"></div>
+      </div>
+      <div class="fg"><label class="chk-lbl"><input type="checkbox" id="aTerms"> I agree to terms and conditions *</label></div>
+      <button class="primary" style="width:100%" onclick="bookAppt()">Book Appointment</button>
+    </div>
+  </div>
+
+  <div id="pharmacy" class="section">
+    <h2>💊 Online Pharmacy</h2>
+    <div class="card-grid" id="pharmacyGrid"></div>
+  </div>
+
+  <div id="contact" class="section">
+    <h2>📞 Contact Us</h2>
+    <div class="alert alert-w" style="margin-bottom:16px"><strong>🚨 Emergency?</strong> Call: <strong>+91-911</strong></div>
+    <div id="cSuccess"></div><div id="cError"></div>
+    <div class="form-box" style="max-width:560px;margin:0 auto 28px">
+      <div class="fg"><label>Your Name *</label><input type="text" id="cName"></div>
+      <div class="fg"><label>Email *</label><input type="email" id="cEmail"></div>
+      <div class="fg"><label>Phone *</label><input type="tel" id="cPhone"></div>
+      <div class="fg"><label>Message *</label><textarea id="cMsg" rows="4"></textarea></div>
+      <button class="primary" style="width:100%" onclick="sendContact()">Send Message</button>
+    </div>
+    <div class="contact-grid">
+      <div class="info-card"><div style="font-size:26px;margin-bottom:8px">📞</div><p style="font-weight:500;font-size:13px">Phone</p><p style="font-size:13px;color:var(--text-secondary)">+91-11-2751-7000</p></div>
+      <div class="info-card"><div style="font-size:26px;margin-bottom:8px">✉️</div><p style="font-weight:500;font-size:13px">Email</p><p style="font-size:13px;color:var(--text-secondary)">support@healthcare.in</p></div>
+      <div class="info-card"><div style="font-size:26px;margin-bottom:8px">⏰</div><p style="font-weight:500;font-size:13px">Hours</p><p style="font-size:13px;color:var(--text-secondary)">24/7 Available</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const hospitals=[
+  {id:1,name:'Apollo Hospitals',rating:5,reviews:234,facilities:['ICU','Emergency','Laboratory','Pharmacy','Ambulance'],location:'Apollonius Medical Complex',phone:'+91-11-2751-7000',hours:'24/7',distance:'2.5 km'},
+  {id:2,name:'Fortis Healthcare',rating:4,reviews:189,facilities:['24×7 Emergency','ICU','Blood Bank','Surgery'],location:'Fortis Medical Centre',phone:'+91-22-4151-8888',hours:'24/7',distance:'4.2 km'},
+  {id:3,name:'Max Healthcare',rating:5,reviews:301,facilities:['Cardiology','Orthopedics','Laboratory','Pharmacy'],location:'Max Super Speciality Hospital',phone:'+91-124-478-4444',hours:'8 AM - 10 PM',distance:'1.8 km'}
+];
+const doctors=[
+  {id:1,name:'Dr. Vikram Singh',role:'Doctor',specialization:'Cardiologist',availability:'9 AM - 4 PM',experience:'12 years'},
+  {id:2,name:'Dr. Anjali Sharma',role:'Doctor',specialization:'Dermatologist',availability:'10 AM - 5 PM',experience:'8 years'},
+  {id:3,name:'Sister Sunita Verma',role:'Nurse',specialization:'Emergency Care',availability:'24 Hours',experience:'6 years'},
+  {id:4,name:'Sister Kavya Nair',role:'Nurse',specialization:'ICU',availability:'Morning Shift',experience:'10 years'}
+];
+const medicines=[
+  {id:1,name:'Paracetamol',price:30,stock:50,description:'Pain reliever & fever reducer',prescription:false,delivery:'1-2 days'},
+  {id:2,name:'Vitamin C',price:150,stock:0,description:'Immune system booster',prescription:false,delivery:'2-3 days'},
+  {id:3,name:'Antibiotic',price:250,stock:15,description:'Infection treatment',prescription:true,delivery:'1-2 days'},
+  {id:4,name:'Aspirin',price:40,stock:30,description:'Heart health & pain relief',prescription:false,delivery:'1-2 days'},
+  {id:5,name:'Ibuprofen',price:60,stock:0,description:'Anti-inflammatory',prescription:false,delivery:'2-3 days'},
+  {id:6,name:'Insulin Injection',price:500,stock:5,description:'Diabetes management',prescription:true,delivery:'1-2 days'}
+];
+let cart=[],appointments=[];
+
+function showSection(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.display='block';
+  setTimeout(()=>t.style.display='none',2800);
+}
+
+function renderHospitals(){
+  document.getElementById('hospitalsGrid').innerHTML=hospitals.map(h=>`
+    <div class="card">
+      <h3>${h.name}</h3>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0">⭐ ${h.rating}/5 (${h.reviews} reviews)</p>
+      <p style="font-size:13px;margin:3px 0">📍 ${h.location}</p>
+      <p style="font-size:13px;margin:3px 0">⏰ ${h.hours} &nbsp; 📞 ${h.phone}</p>
+      <p style="font-size:13px;margin:3px 0">📍 ${h.distance} away</p>
+      <div style="margin-top:10px">${h.facilities.map(f=>`<span class="badge badge-ok">${f}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderDoctors(){
+  document.getElementById('doctorsBody').innerHTML=doctors.map(d=>`
+    <tr><td>${d.name}</td><td>${d.role}</td><td>${d.specialization}</td><td>${d.experience}</td><td>${d.availability}</td></tr>`).join('');
+}
+
+function renderPharmacy(){
+  document.getElementById('pharmacyGrid').innerHTML=medicines.map(m=>`
+    <div class="card" style="${m.stock===0?'opacity:0.6':''}">
+      <h3>${m.name}</h3>
+      <p style="font-size:13px;color:var(--text-secondary);margin:4px 0">${m.description}</p>
+      <span class="badge ${m.stock===0?'badge-no':'badge-ok'}">${m.stock===0?'Out of Stock':'Available'}</span>
+      <p style="font-size:13px;margin:6px 0">📦 Stock: ${m.stock} units</p>
+      ${m.prescription?'<span class="badge badge-warn">⚠️ Prescription Required</span>':''}
+      <p style="font-size:13px;margin:4px 0">🚚 Delivery: ${m.delivery}</p>
+      <p style="font-size:19px;font-weight:500;color:#28a745;margin:10px 0">₹${m.price}</p>
+      <button class="primary btn-success btn-sm" onclick="addToCart(${m.id})" ${m.stock===0?'disabled':''}>Add to Cart</button>
+    </div>`).join('');
+}
+
+function populateSelects(){
+  const hs=document.getElementById('aHosp'),ds=document.getElementById('aDoc');
+  hospitals.forEach(h=>hs.innerHTML+=`<option value="${h.name}">${h.name}</option>`);
+  doctors.forEach(d=>ds.innerHTML+=`<option value="${d.name}">${d.name} - ${d.specialization}</option>`);
+}
+
+function addToCart(id){
+  const m=medicines.find(x=>x.id===id);
+  if(m.stock===0){showToast('Out of stock');return;}
+  const ex=cart.find(c=>c.id===id);
+  ex?ex.quantity++:cart.push({...m,quantity:1});
+  updateCart();showToast('✅ '+m.name+' added to cart');
+}
+
+function removeFromCart(id){cart=cart.filter(c=>c.id!==id);updateCart();showToast('Removed from cart');}
+
+function updateQty(id,d){
+  const item=cart.find(c=>c.id===id);
+  if(item){item.quantity+=d;if(item.quantity<=0)removeFromCart(id);else updateCart();}
+}
+
+function updateCart(){
+  const ci=document.getElementById('cartItems'),ct=document.getElementById('cartTotal'),cc=document.getElementById('cartCount');
+  if(cart.length===0){ci.innerHTML='<p style="color:var(--text-muted);font-size:13px">Your cart is empty</p>';ct.textContent='0';cc.textContent='0';return;}
+  let total=0;
+  ci.innerHTML=cart.map(item=>{
+    const t=item.price*item.quantity;total+=t;
+    return`<div class="cart-item">
+      <div style="flex:1"><div style="font-weight:500;color:#0077b6;font-size:13px">${item.name}</div><div style="font-size:11px;color:var(--text-muted)">₹${item.price} each${item.prescription?' • ⚠️ Rx':''}</div></div>
+      <div class="qc"><button class="primary btn-sm" onclick="updateQty(${item.id},-1)">-</button><span style="font-size:13px;min-width:20px;text-align:center">${item.quantity}</span><button class="primary btn-sm" onclick="updateQty(${item.id},1)">+</button></div>
+      <div style="font-weight:500;color:#0077b6;font-size:13px;min-width:44px;text-align:right">₹${t}</div>
+      <button class="primary btn-danger btn-sm" onclick="removeFromCart(${item.id})">✕</button>
+    </div>`;
+  }).join('');
+  ct.textContent=total;cc.textContent=cart.length;
+}
+
+function toggleCart(){document.getElementById('cartBox').classList.toggle('open');}
+
+function validateEmail(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
+function validatePhone(p){return/^[0-9\-\+\(\)\s]{10,}$/.test(p);}
+
+function bookAppt(){
+  const n=document.getElementById('pName').value,em=document.getElementById('pEmail').value,ph=document.getElementById('pPhone').value;
+  const ag=document.getElementById('pAge').value,gn=document.getElementById('pGender').value,bl=document.getElementById('pBlood').value;
+  const ho=document.getElementById('aHosp').value,dc=document.getElementById('aDoc').value,dt=document.getElementById('aDate').value;
+  const rs=document.getElementById('aReason').value,tm=document.getElementById('aTerms').checked;
+  const err=document.getElementById('apptError'),suc=document.getElementById('apptSuccess');
+  err.innerHTML='';suc.innerHTML='';
+  if(!n.trim()){err.innerHTML='<div class="alert alert-e">Please enter patient name</div>';return;}
+  if(!validateEmail(em)){err.innerHTML='<div class="alert alert-e">Please enter a valid email</div>';return;}
+  if(!validatePhone(ph)){err.innerHTML='<div class="alert alert-e">Please enter a valid phone number</div>';return;}
+  if(!ag||ag<0||ag>150){err.innerHTML='<div class="alert alert-e">Please enter a valid age</div>';return;}
+  if(!gn){err.innerHTML='<div class="alert alert-e">Please select gender</div>';return;}
+  if(!bl){err.innerHTML='<div class="alert alert-e">Please select blood type</div>';return;}
+  if(!ho||!dc||!dt||!rs){err.innerHTML='<div class="alert alert-e">Please fill all appointment details</div>';return;}
+  const sd=new Date(dt),td=new Date();td.setHours(0,0,0,0);
+  if(sd<td){err.innerHTML='<div class="alert alert-e">Please select a future date</div>';return;}
+  if(!tm){err.innerHTML='<div class="alert alert-e">Please agree to terms and conditions</div>';return;}
+  appointments.push({id:Date.now(),name:n,email:em,phone:ph,age:ag,gender:gn,blood:bl,hospital:ho,doctor:dc,date:dt,reason:rs});
+  suc.innerHTML='<div class="alert alert-s"><strong>✅ Appointment Booked!</strong><br>Confirmation email sent to '+em+'</div>';
+  showToast('Appointment booked successfully!');
+  ['pName','pAge','pEmail','pPhone','pReason','aReason'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['pGender','pBlood','aHosp','aDoc','aDate'].forEach(id=>{const el=document.getElementById(id);if(el)el.selectedIndex=0;});
+  document.getElementById('aTerms').checked=false;
+  renderApptHist();setTimeout(()=>suc.innerHTML='',5000);
+}
+
+function renderApptHist(){
+  const h=document.getElementById('apptHist');
+  if(!appointments.length){h.innerHTML='';return;}
+  h.innerHTML='<h3 style="margin-bottom:12px">Your Appointments</h3>'+appointments.map(a=>`
+    <div class="apt-hist-item">
+      <strong>${a.name}</strong><br>
+      <span style="color:var(--text-secondary)">📅 ${a.date} &nbsp;|&nbsp; 👨‍⚕️ ${a.doctor} &nbsp;|&nbsp; 🏥 ${a.hospital}</span><br>
+      📝 ${a.reason}
+      <button class="primary btn-danger btn-sm" style="float:right;margin-top:4px" onclick="cancelAppt(${a.id})">Cancel</button>
+    </div>`).join('');
+}
+
+function cancelAppt(id){appointments=appointments.filter(a=>a.id!==id);showToast('Appointment cancelled');renderApptHist();}
+
+function sendContact(){
+  const n=document.getElementById('cName').value,em=document.getElementById('cEmail').value;
+  const ph=document.getElementById('cPhone').value,msg=document.getElementById('cMsg').value;
+  const err=document.getElementById('cError'),suc=document.getElementById('cSuccess');
+  err.innerHTML='';suc.innerHTML='';
+  if(!n.trim()){err.innerHTML='<div class="alert alert-e">Please enter your name</div>';return;}
+  if(!validateEmail(em)){err.innerHTML='<div class="alert alert-e">Please enter a valid email</div>';return;}
+  if(!validatePhone(ph)){err.innerHTML='<div class="alert alert-e">Please enter a valid phone number</div>';return;}
+  if(!msg.trim()){err.innerHTML='<div class="alert alert-e">Please enter your message</div>';return;}
+  suc.innerHTML='<div class="alert alert-s"><strong>✅ Message sent!</strong><br>We will get back to you within 24 hours.</div>';
+  showToast('Message sent successfully!');
+  ['cName','cEmail','cPhone','cMsg'].forEach(id=>document.getElementById(id).value='');
+  setTimeout(()=>suc.innerHTML='',5000);
+}
+
+renderHospitals();renderDoctors();renderPharmacy();populateSelects();
+</script>
