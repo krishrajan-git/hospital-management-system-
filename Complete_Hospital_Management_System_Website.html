@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Connect - Hospital Management System</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#eef7ff;color:#333}
+header{background:linear-gradient(90deg,#0d6efd,#00c6ff);color:#fff;padding:18px}
+nav a{color:#fff;text-decoration:none;margin:0 12px;font-weight:bold}
+.hero{padding:70px 20px;text-align:center;background:linear-gradient(135deg,#4facfe,#00f2fe);color:#fff}
+section{padding:40px 8%}
+h2{color:#0d6efd}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #ddd;padding:10px;text-align:left}
+th{background:#0d6efd;color:#fff}
+input,select,textarea{width:100%;padding:10px;margin:8px 0}
+button{background:#0d6efd;color:#fff;border:none;padding:10px 18px;border-radius:6px}
+footer{background:#003b73;color:#fff;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Healthcare Connect</h1>
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#hospitals">Hospitals</a>
+<a href="#staff">Doctors & Nurses</a>
+<a href="#appointment">Appointments</a>
+<a href="#pharmacy">Pharmacy</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Welcome to Healthcare Connect</h1>
+<p>A centralized Hospital Management System that connects patients, hospitals, doctors, nurses, pharmacies, and healthcare services on one platform.</p>
+<button>Book Appointment</button>
+</div>
+
+<section id="about">
+<h2>About the System</h2>
+<p>Healthcare Connect helps patients compare hospitals, view facilities and quality ratings, find specialist doctors, see nurse information, book appointments online, check medicine availability, and order medicines from hospital pharmacies. The system reduces paperwork and provides faster access to healthcare services.</p>
+</section>
+
+<section id="services">
+<h2>Our Services</h2>
+<div class="cards">
+<div class="card"><h3>Hospital Information</h3><p>View hospital facilities, departments, quality ratings, emergency services and contact details.</p></div>
+<div class="card"><h3>Doctor & Nurse Details</h3><p>Find specialists, experience, availability and nursing staff information.</p></div>
+<div class="card"><h3>Appointment Booking</h3><p>Book appointments with your preferred doctor at your selected hospital.</p></div>
+<div class="card"><h3>Online Pharmacy</h3><p>Search medicines, check stock, order online and track your order.</p></div>
+</div>
+</section>
+
+<section id="hospitals">
+<h2>Partner Hospitals</h2>
+<table>
+<tr><th>Hospital</th><th>Facilities</th><th>Quality</th></tr>
+<tr><td>City Care Hospital</td><td>ICU, Emergency, Laboratory, Pharmacy</td><td>★★★★★</td></tr>
+<tr><td>Sunrise Hospital</td><td>Cardiology, Blood Bank, Ambulance</td><td>★★★★☆</td></tr>
+<tr><td>Life Plus Hospital</td><td>Orthopedics, Surgery, ICU</td><td>★★★★★</td></tr>
+</table>
+</section>
+
+<section id="staff">
+<h2>Doctors & Nurses</h2>
+<table>
+<tr><th>Name</th><th>Role</th><th>Specialization</th><th>Availability</th></tr>
+<tr><td>Dr. Rahul Sharma</td><td>Doctor</td><td>Cardiologist</td><td>9:00 AM - 4:00 PM</td></tr>
+<tr><td>Dr. Priya Patel</td><td>Doctor</td><td>Dermatologist</td><td>10:00 AM - 5:00 PM</td></tr>
+<tr><td>Nurse Anita</td><td>Nurse</td><td>Emergency Care</td><td>24 × 7</td></tr>
+<tr><td>Nurse Meena</td><td>Nurse</td><td>ICU</td><td>Morning Shift</td></tr>
+</table>
+</section>
+
+<section id="appointment">
+<h2>Appointment Booking</h2>
+<form>
+<input placeholder="Full Name">
+<input type="email" placeholder="Email">
+<select><option>Select Hospital</option><option>City Care Hospital</option><option>Sunrise Hospital</option></select>
+<select><option>Select Doctor</option><option>Dr. Rahul Sharma</option><option>Dr. Priya Patel</option></select>
+<input type="date">
+<button type="button">Confirm Appointment</button>
+</form>
+</section>
+
+<section id="pharmacy">
+<h2>Online Pharmacy</h2>
+<table>
+<tr><th>Medicine</th><th>Price</th><th>Status</th><th>Action</th></tr>
+<tr><td>Paracetamol</td><td>₹30</td><td>Available</td><td><button>Order</button></td></tr>
+<tr><td>Vitamin C</td><td>₹150</td><td>Available</td><td><button>Order</button></td></tr>
+<tr><td>Amoxicillin</td><td>₹220</td><td>Available</td><td><button>Order</button></td></tr>
+</table>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<form>
+<input placeholder="Your Name">
+<input type="email" placeholder="Email">
+<textarea rows="4" placeholder="Your Message"></textarea>
+<button type="button">Send Message</button>
+</form>
+</section>
+
+<footer>
+<p>© 2026 Healthcare Connect | Hospital Management System</p>
+<p>One Platform for Hospitals, Doctors, Nurses, Appointments and Online Pharmacy.</p>
+</footer>
+
+</body>
+</html>
